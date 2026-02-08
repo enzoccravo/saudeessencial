@@ -658,8 +658,34 @@ button {
    ============================================ */
 .footer {
     background-color: var(--color-dark);
-    color: var(--color-gray-300);
-    padding: 3rem 0 1.5rem;
+    color: var(--color-gray-400);
+    padding: 1.5rem 0;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.footer-copyright {
+    font-size: var(--font-size-sm);
+    margin-bottom: 0.5rem;
+}
+
+.footer-credits {
+    font-size: var(--font-size-xs);
+    color: var(--color-gray-500);
+}
+
+.footer-credits a {
+    color: var(--color-gray-400);
+    transition: color 250ms ease;
+}
+
+.footer-credits a:hover {
+    color: var(--color-white);
 }
 
 /* ============================================
