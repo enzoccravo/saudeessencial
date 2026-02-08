@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - SAÚDE ESSENCIAL</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="assets/logo.png" alt="Logo da Clínica">
+            </a>
+            <nav class="navbar">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="https://saude-essencial.videoconsultas.app/paciente/autogestion"
+                            class="nav-link" target="_blank">TELEMEDICINA</a></li>
+                    <li class="nav-item"><a href="cadastro.html" class="nav-link active">CADASTRO</a></li>
+                    <li class="nav-item"><a href="assets/panfleto.pdf" class="nav-link" target="_blank">GUIA MÉDICO</a>
+                    </li>
+                </ul>
+            </nav>
+            <button class="mobile-menu-btn" aria-label="Menu">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <!-- Formulário de Cadastro -->
+        <section class="form-section">
+            <div class="form-container">
+                <h1 class="form-title">Faça seu Cadastro</h1>
+                <p class="form-subtitle">Preencha os dados abaixo para se tornar um associado Saúde Essencial</p>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar" id="progress-bar">
+                    <div class="progress-step" data-step="0">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Escolha o Cartão</span>
+                    </div>
+                    <div class="progress-step" data-step="1">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Dados Pessoais</span>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Endereço</span>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <span class="step-number">4</span>
+                        <span class="step-label">Dependentes</span>
+                    </div>
+                </div>
+
+                <form action="https://formspree.io/f/xpqjzvvz" method="POST" class="cadastro-form">
+
+                    <!-- Passo 0: Escolha do Cartão -->
+                    <div class="step" id="step-0">
+                        <h3 class="step-title">Escolha seu Cartão</h3>
+
+                        <!-- Cartão TOP -->
+                        <div class="plan-option" id="option-top" onclick="selectPlan('top')">
+                            <div class="plan-option-header">
+                                <div class="plan-option-radio">
+                                    <span class="radio-circle"></span>
+                                </div>
+                                <div class="plan-option-info">
+                                    <h4 class="plan-option-title">CARTÃO TOP</h4>
+                                    <span class="plan-option-badge">Mais Popular</span>
+                                </div>
+                            </div>
+                            <details class="plan-details">
+                                <summary>Mais informações</summary>
+                                <ul class="plan-benefits-list">
+                                    <li>✓ 1 Titular + 4 dependentes</li>
+                                    <li>✓ Empréstimos de cadeira de rodas e muletas</li>
+                                    <li>✓ Maior rede de credenciados</li>
+                                    <li>✓ Sem limites de idade</li>
+                                    <li>✓ Descontos em consultas e exames</li>
+                                    <li>✓ Auxílio funeral</li>
+                                    <li>✓ Remoção de Ambulância</li>
+                                </ul>
+                            </details>
+                        </div>
+
+                        <!-- Cartão BÁSICO -->
+                        <div class="plan-option" id="option-basico" onclick="selectPlan('basico')">
+                            <div class="plan-option-header">
+                                <div class="plan-option-radio">
+                                    <span class="radio-circle"></span>
+                                </div>
+                                <div class="plan-option-info">
+                                    <h4 class="plan-option-title">CARTÃO BÁSICO</h4>
+                                </div>
+                            </div>
+                            <details class="plan-details">
+                                <summary>Mais informações</summary>
+                                <ul class="plan-benefits-list">
+                                    <li>✓ 1 Titular + 4 dependentes</li>
+                                    <li>✓ Empréstimos de cadeira de rodas e muletas</li>
+                                    <li>✓ Maior rede de credenciados</li>
+                                    <li>✓ Sem limites de idade e carência</li>
+                                    <li>✓ Descontos em exames e consultas</li>
+                                    <li>✓ Odontologia</li>
+                                </ul>
+                            </details>
+                        </div>
+
+                        <div class="form-buttons">
+                            <button type="button" class="btn-next" id="btn-continue" onclick="nextStep(1)"
+                                disabled>Continuar</button>
+                        </div>
+                    </div>
+
+                    <!-- Passo 1: Dados Pessoais -->
+                    <div class="step" id="step-1" style="display:none;">
+                        <h3 class="step-title">Dados Pessoais</h3>
+                        <div class="form-group">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="(00) 0-0000-0000" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="btn-prev" onclick="nextStep(0)">Anterior</button>
+                            <button type="button" class="btn-next" onclick="nextStep(2)">Próximo</button>
+                        </div>
+                    </div>
+
+                    <!-- Passo 2: Endereço -->
+                    <div class="step" id="step-2" style="display:none;">
+                        <h3 class="step-title">Endereço</h3>
+                        <div class="form-group">
+                            <label for="endereco">Endereço Completo</label>
+                            <input type="text" id="endereco" name="endereco" placeholder="Rua, número, bairro" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cidade">Cidade</label>
+                            <input type="text" id="cidade" name="cidade" placeholder="Sua cidade" required>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="button" class="btn-prev" onclick="nextStep(1)">Anterior</button>
+                            <button type="button" class="btn-next" onclick="nextStep(3)">Próximo</button>
+                        </div>
+                    </div>
+
+                    <!-- Passo 3: Dependentes -->
+                    <div class="step" id="step-3" style="display:none;">
+                        <h3 class="step-title">Dependentes</h3>
+                        <p class="step-description">Informe o nome completo de cada dependente (até 4 dependentes)</p>
+                        <div class="form-group">
+                            <label for="dependente1">Dependente 1</label>
+                            <input type="text" id="dependente1" name="dependente_1"
+                                placeholder="Nome completo do dependente 1">
+                        </div>
+                        <div class="form-group">
+                            <label for="dependente2">Dependente 2</label>
+                            <input type="text" id="dependente2" name="dependente_2"
+                                placeholder="Nome completo do dependente 2">
+                        </div>
+                        <div class="form-group">
+                            <label for="dependente3">Dependente 3</label>
+                            <input type="text" id="dependente3" name="dependente_3"
+                                placeholder="Nome completo do dependente 3">
+                        </div>
+                        <div class="form-group">
+                            <label for="dependente4">Dependente 4</label>
+                            <input type="text" id="dependente4" name="dependente_4"
+                                placeholder="Nome completo do dependente 4">
+                        </div>
+
+                        <input type="hidden" name="plano_escolhido" id="plano-input">
+
+                        <div class="form-buttons">
+                            <button type="button" class="btn-prev" onclick="nextStep(2)">Anterior</button>
+                            <button type="submit" class="btn-submit">Enviar Cadastro</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p class="footer-copyright">© 2022 Saúde Essencial</p>
+            <p class="footer-credits">Criado e desenvolvido por <a href="https://github.com/enzoccravo"
+                    target="_blank">enzoccravo</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        let selectedPlan = null;
+
+        // Função para selecionar o plano
+        function selectPlan(plan) {
+            selectedPlan = plan;
+            document.getElementById('plano-input').value = plan;
+
+            // Atualiza visual dos cards
+            document.querySelectorAll('.plan-option').forEach(el => el.classList.remove('selected'));
+            document.getElementById('option-' + plan).classList.add('selected');
+
+            // Habilita o botão de continuar
+            document.getElementById('btn-continue').disabled = false;
+        }
+
+        // Função para mostrar erro no campo
+        function showError(input, message) {
+            input.classList.add('input-error');
+            // Remove erro anterior se existir
+            const existingError = input.parentElement.querySelector('.error-message');
+            if (existingError) existingError.remove();
+
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            input.parentElement.appendChild(errorDiv);
+        }
+
+        // Função para limpar erro do campo
+        function clearError(input) {
+            input.classList.remove('input-error');
+            const existingError = input.parentElement.querySelector('.error-message');
+            if (existingError) existingError.remove();
+        }
+
+        // Função para validar email
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        // Função para validar o passo atual antes de avançar
+        function validateStep(currentStep) {
+            let isValid = true;
+
+            if (currentStep === 0) {
+                // Passo 0: Verificar se selecionou um plano
+                if (!selectedPlan) {
+                    alert('Por favor, selecione um cartão para continuar.');
+                    return false;
+                }
+            }
+
+            if (currentStep === 1) {
+                // Passo 1: Dados Pessoais
+                const nome = document.getElementById('nome');
+                const email = document.getElementById('email');
+                const telefone = document.getElementById('telefone');
+
+                // Validar Nome
+                if (!nome.value.trim()) {
+                    showError(nome, 'Por favor, preencha seu nome completo.');
+                    isValid = false;
+                } else {
+                    clearError(nome);
+                }
+
+                // Validar Email
+                if (!email.value.trim()) {
+                    showError(email, 'Por favor, preencha seu e-mail.');
+                    isValid = false;
+                } else if (!isValidEmail(email.value.trim())) {
+                    showError(email, 'Por favor, insira um e-mail válido.');
+                    isValid = false;
+                } else {
+                    clearError(email);
+                }
+
+                // Validar Telefone
+                if (!telefone.value.trim()) {
+                    showError(telefone, 'Por favor, preencha seu telefone.');
+                    isValid = false;
+                } else {
+                    clearError(telefone);
+                }
+            }
+
+            if (currentStep === 2) {
+                // Passo 2: Endereço
+                const endereco = document.getElementById('endereco');
+                const cidade = document.getElementById('cidade');
+
+                // Validar Endereço
+                if (!endereco.value.trim()) {
+                    showError(endereco, 'Por favor, preencha seu endereço.');
+                    isValid = false;
+                } else {
+                    clearError(endereco);
+                }
+
+                // Validar Cidade
+                if (!cidade.value.trim()) {
+                    showError(cidade, 'Por favor, preencha sua cidade.');
+                    isValid = false;
+                } else {
+                    clearError(cidade);
+                }
+            }
+
+            // Passo 3: Dependentes são opcionais, não precisa validar
+
+            return isValid;
+        }
+
+        // Função para navegar entre os passos do formulário
+        function nextStep(step) {
+            // Se veio da URL, não deixa voltar para o passo 0
+            const urlParams = new URLSearchParams(window.location.search);
+            const planoFromUrl = urlParams.get('plano');
+            if (step === 0 && planoFromUrl) {
+                return; // Não permite voltar para seleção se já veio com plano
+            }
+
+            // Determina o passo atual
+            const currentStepEl = document.querySelector('.step[style*="block"]') || document.querySelector('.step:not([style*="none"])');
+            const currentStep = currentStepEl ? parseInt(currentStepEl.id.replace('step-', '')) : 0;
+
+            // Se está avançando (não voltando), valida o passo atual
+            if (step > currentStep) {
+                if (!validateStep(currentStep)) {
+                    return; // Não avança se não validou
+                }
+            }
+
+            // Esconde todas as etapas
+            document.querySelectorAll('.step').forEach(el => el.style.display = 'none');
+            // Mostra a etapa desejada
+            document.getElementById('step-' + step).style.display = 'block';
+
+            // Atualiza a barra de progresso
+            document.querySelectorAll('.progress-step').forEach(el => {
+                const stepNum = parseInt(el.getAttribute('data-step'));
+                el.classList.remove('active', 'completed');
+                if (stepNum < step) {
+                    el.classList.add('completed');
+                } else if (stepNum === step) {
+                    el.classList.add('active');
+                }
+            });
+        }
+
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const plano = urlParams.get('plano');
+
+            if (plano) {
+                // Se já tem plano na URL, pula para o passo 1
+                selectPlan(plano);
+
+                // Esconde o passo 0 da barra de progresso
+                document.querySelector('.progress-step[data-step="0"]').style.display = 'none';
+
+                // Atualiza numeração visual
+                document.querySelectorAll('.progress-step').forEach((el, index) => {
+                    if (index > 0) {
+                        el.querySelector('.step-number').textContent = index;
+                    }
+                });
+
+                // Esconde botão "Anterior" no passo 1
+                const prevBtn = document.querySelector('#step-1 .btn-prev');
+                if (prevBtn) prevBtn.style.display = 'none';
+
+                // Vai direto para dados pessoais
+                nextStep(1);
+            } else {
+                // Mostra o passo 0
+                nextStep(0);
+            }
+
+            // Limpar erros quando o usuário começar a digitar
+            document.querySelectorAll('input, textarea').forEach(input => {
+                input.addEventListener('input', function () {
+                    clearError(this);
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
