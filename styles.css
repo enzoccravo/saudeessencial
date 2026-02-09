@@ -391,6 +391,132 @@ button {
     color: var(--color-gray-600);
 }
 
+/* ============ Card Price Styling ============ */
+.card-price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-top: 1rem;
+    padding: 1rem 0;
+    position: relative;
+}
+
+.card-price::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gray-200), transparent);
+}
+
+.price-currency {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-gray-500);
+    margin-right: 0.15rem;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+}
+
+.price-value {
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 20px rgba(11, 55, 147, 0.15);
+}
+
+.price-cents {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-left: 0.1rem;
+    align-self: flex-start;
+    margin-top: 0.5rem;
+}
+
+.price-period {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-gray-400);
+    margin-left: 0.25rem;
+    align-self: flex-end;
+    margin-bottom: 0.35rem;
+}
+
+/* Card TOP - Price Highlight */
+.card-top .card-price {
+    background: linear-gradient(135deg, rgba(11, 55, 147, 0.05) 0%, rgba(0, 180, 216, 0.05) 100%);
+    border-radius: 1rem;
+    margin: 1rem -0.5rem 0;
+    padding: 1.25rem 0.5rem;
+}
+
+.card-top .card-price::before {
+    display: none;
+}
+
+.card-top .price-value {
+    font-size: 4rem;
+    animation: pricePulse 3s ease-in-out infinite;
+}
+
+.card-top .price-currency,
+.card-top .price-cents {
+    color: var(--color-primary);
+}
+
+/* Card BÁSICO - Price Style */
+.card-basic .price-value {
+    background: linear-gradient(135deg, var(--color-gray-600) 0%, var(--color-gray-500) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.card-basic .price-currency,
+.card-basic .price-cents {
+    color: var(--color-gray-500);
+}
+
+/* Price Pulse Animation */
+@keyframes pricePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+}
+
+/* Hover Effects on Price */
+.plan-card:hover .price-value {
+    animation: priceGlow 0.6s ease-out;
+}
+
+@keyframes priceGlow {
+    0% {
+        filter: brightness(1);
+    }
+
+    50% {
+        filter: brightness(1.2);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
+
 /* Benefits List */
 .card-benefits {
     margin-bottom: 2rem;
